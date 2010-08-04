@@ -1,0 +1,14 @@
+This is a post-compiler tool, heavily based on a sample written by mike stall:
+http://blogs.msdn.com/b/jmstall/archive/2005/02/21/377806.aspx
+
+In short, this utility allows weaving MSIL code into .cs / .vb files,
+under specially crafted #if/#endif blocks, and later on, via this tool, 
+to weave those IL statements back into the managed assembly.
+
+Mike's code has been updated in these regards:
+* being able to work on compiled assemblies instead of source files
+* Capable of inserting snippets from more than on file that was a part
+  of the generated assembly
+* Being able to inset multiple snippets
+* Better command line parsing
+* Better detection of .NET SDK directoy according to the registry
