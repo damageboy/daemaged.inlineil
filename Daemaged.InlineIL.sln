@@ -5,14 +5,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Daemaged.InlineIL", "Daemag
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|x86 = Debug|x86
-		Release|x86 = Release|x86
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DD22CE04-2896-4430-8D16-CD7FB06BABD4}.Debug|x86.ActiveCfg = Debug|x86
-		{DD22CE04-2896-4430-8D16-CD7FB06BABD4}.Debug|x86.Build.0 = Debug|x86
-		{DD22CE04-2896-4430-8D16-CD7FB06BABD4}.Release|x86.ActiveCfg = Release|x86
-		{DD22CE04-2896-4430-8D16-CD7FB06BABD4}.Release|x86.Build.0 = Release|x86
+		{DD22CE04-2896-4430-8D16-CD7FB06BABD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD22CE04-2896-4430-8D16-CD7FB06BABD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD22CE04-2896-4430-8D16-CD7FB06BABD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD22CE04-2896-4430-8D16-CD7FB06BABD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
