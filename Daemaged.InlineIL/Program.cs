@@ -165,9 +165,11 @@ namespace InlineIL
       string inputFile = null;
       var verify = false;
       var verbose = false;
+      string keyFile = null;
       var o = new OptionSet {
         {"dll", v => outputType = "DLL"},
         {"exe", v => outputType = "EXE"},
+        {"k|key=", v => keyFile = v},
         {"c|verify", v => verify = v != null },
         {"v|verbose", v => verbose = v != null },
         {"i|input=", v => inputFile = v},
@@ -211,7 +213,7 @@ namespace InlineIL
         foreach (var s in snippets)
           doc.Lines = Util.InsertArrayIntoArray(doc.Lines, s.Lines, s.InsertLocation);
         // Now re-emit the new IL.
-        doc.EmitToFile(outputFile, outputType);
+        doc.EmitToFile(outputFile, outputType, keyFile);
 
         // Since they're doing direct IL manipulation, we really should run peverify on the output.         
         if (verify) {

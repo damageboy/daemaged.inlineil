@@ -51,7 +51,7 @@ namespace InlineIL
     public string[] Lines { get; set; }
 
     // Save the IL document back out to a file.
-    public void EmitToFile(string pathOutputModule, string outputType)
+    public void EmitToFile(string pathOutputModule, string outputType, string keyFile)
     {
       var pathTempIl = Path.GetTempFileName();
 
@@ -75,7 +75,9 @@ namespace InlineIL
       //   /optimize tells ilasm to convert long instructions to short forms (eg "ldarg 0 --> ldarg.0")
       //   /debug (instead of /debug=impl) tells the runtime to use explicit sequence points 
       // (which are necessary to single-step the IL instructions that we're inlining)
-      Util.Run(pathIlasm, string.Format("\"{0}\" /output=\"{1}\" /optimize /debug /{2} /nologo /quiet", pathTempIl, pathOutputModule, outputType));
+      var keyArg = !String.IsNullOrEmpty(keyFile) ? string.Format("/KEY={0}", keyFile) : "";
+      Util.Run(pathIlasm, string.Format("\"{0}\" /output=\"{1}\" /optimize /debug /{2} {3} /nologo /quiet", 
+        pathTempIl, pathOutputModule, outputType, keyArg));
     }
 
     // Insert a snippet of IL into the document.
