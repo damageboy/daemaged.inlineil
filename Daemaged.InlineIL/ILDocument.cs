@@ -51,11 +51,15 @@ namespace InlineIL
     public string[] Lines { get; set; }
 
     // Save the IL document back out to a file.
-    public void EmitToFile(string pathOutputModule, string outputType, string keyFile)
+    public void EmitToFile(string pathOutputModule, string outputType, string keyFile, bool verbose)
     {
+      
       var pathTempIl = Path.GetTempFileName();
 
-      // Dump to file.
+      if (verbose)
+        Console.WriteLine("Emitting temp MSIL to {0}", pathTempIl);
+
+      // Dump to file.);
       using (TextWriter writer = new StreamWriter(new FileStream(pathTempIl, FileMode.Create)))
       {
         foreach (var line in Lines)
@@ -76,8 +80,13 @@ namespace InlineIL
       //   /debug (instead of /debug=impl) tells the runtime to use explicit sequence points 
       // (which are necessary to single-step the IL instructions that we're inlining)
       var keyArg = !String.IsNullOrEmpty(keyFile) ? string.Format("/KEY={0}", keyFile) : "";
-      Util.Run(pathIlasm, string.Format("\"{0}\" /output=\"{1}\" /optimize /debug /{2} {3} /nologo /quiet", 
-        pathTempIl, pathOutputModule, outputType, keyArg));
+
+      var cmdArgs = string.Format("\"{0}\" /output=\"{1}\" /optimize /debug /{2} {3} /nologo /quiet",
+                              pathTempIl, pathOutputModule, outputType, keyArg);
+      if (verbose)
+        Console.WriteLine("Running {0} {1}", pathIlasm, cmdArgs);
+
+      Util.Run(pathIlasm, cmdArgs);
     }
 
     // Insert a snippet of IL into the document.

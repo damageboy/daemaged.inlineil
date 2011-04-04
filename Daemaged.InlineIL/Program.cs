@@ -213,7 +213,7 @@ namespace InlineIL
         foreach (var s in snippets)
           doc.Lines = Util.InsertArrayIntoArray(doc.Lines, s.Lines, s.InsertLocation);
         // Now re-emit the new IL.
-        doc.EmitToFile(outputFile, outputType, keyFile);
+        doc.EmitToFile(outputFile, outputType, keyFile, verbose);
 
         // Since they're doing direct IL manipulation, we really should run peverify on the output.         
         if (verify) {
